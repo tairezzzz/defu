@@ -7,7 +7,7 @@
   background-color: #fff;
   text-align: center;
 
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
 }
 
@@ -27,4 +27,57 @@
   text-align: left;
   list-style: decimal;
   margin: 10px 0px;
+}
+
+.country {
+    fill: #E7E7E7;
+    stroke: none;
+}
+
+.country-boundary {
+    fill: none;
+    stroke: #999;
+}
+
+.region {
+    stroke: none;
+}
+
+.region-boundary {
+    fill: none;
+    stroke: #424242;
+    stroke-dasharray: 2 2;
+    stroke-linejoin: round;
+    opacity: 0.5;
+}
+
+.ukraine-boundary {
+    fill: none;
+    stroke: #333;
+}
+
+.river {
+    fill: none;
+    stroke: #fff;
+}
+.lake {
+    fill: #fff;
+    stroke: none;
+}
+
+#map {
+    width: 100%;
+    margin: auto;
+}
+
+.score{
+    position: absolute;
+    top:1%;
+    right: 1%;
+}
+.colorade{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    font-size: 26px;
 }
