@@ -16,6 +16,14 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+    eol: {
+      dist: {
+        options: {eol: 'lf', replace: true},
+        files: [{
+          src: ['<%= yeoman.dist %>/*.html']
+        }]
+      }
+    },
 
     // Project settings
     yeoman: {
@@ -151,11 +159,10 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       }
     },
 
-    
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
@@ -337,8 +344,8 @@ module.exports = function (grunt) {
         },
         coverageReporter: {
           reporters: [
-            { type: 'html', dir: 'coverage/' },
-            { type: 'text-summary' }
+            {type: 'html', dir: 'coverage/'},
+            {type: 'text-summary'}
           ]
         }
       },
@@ -401,6 +408,7 @@ module.exports = function (grunt) {
   // browser tab to see the changes. Technically ripple runs `cordova prepare` on browser
   // refreshes, but at this time you would need to re-run the emulator to see changes.
   grunt.registerTask('ripple', ['wiredep', 'newer:copy:app', 'ripple-emulator']);
+  grunt.loadNpmTasks('grunt-eol');
   grunt.registerTask('ripple-emulator', function () {
     grunt.config.set('watch', {
       all: {
@@ -437,7 +445,7 @@ module.exports = function (grunt) {
   });
 
   // Wrap ionic-cli commands
-  grunt.registerTask('ionic', function() {
+  grunt.registerTask('ionic', function () {
     var script = path.resolve('./node_modules/ionic/bin/', 'ionic');
     var flags = process.argv.splice(3);
     var child = spawn(script, this.args.concat(flags));
@@ -469,13 +477,13 @@ module.exports = function (grunt) {
 
     grunt.task.run(['init', 'ionic:serve']);
   });
-  grunt.registerTask('emulate', function() {
+  grunt.registerTask('emulate', function () {
     return grunt.task.run(['init', 'ionic:emulate:' + this.args.join()]);
   });
-  grunt.registerTask('run', function() {
+  grunt.registerTask('run', function () {
     return grunt.task.run(['init', 'ionic:run:' + this.args.join()]);
   });
-  grunt.registerTask('build', function() {
+  grunt.registerTask('build', function () {
     return grunt.task.run(['init', 'ionic:build:' + this.args.join()]);
   });
 

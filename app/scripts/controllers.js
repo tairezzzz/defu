@@ -21,8 +21,8 @@ angular.module('Defu.controllers', [])
   })
 
   .controller('MainCtrl', function ($scope, $state, $interval) {
+
     $interval(function () {
-      $(".region").removeClass("captured");
       var random = new Random();
       var ind = random.integer(0, 26);
       var region = $(".region").eq(ind);
@@ -34,7 +34,21 @@ angular.module('Defu.controllers', [])
         "left": region.position().left + region[0].getBoundingClientRect().width / 2 - colorade.width() / 2
       });
     }, 20000);
+    $scope.hitColorade = function () {
+      $scope.score = $scope.score + 10;
+      var random = new Random();
+      var ind = random.integer(0, 26);
+      var region = $(".region").eq(ind);
+      var colorade = $(".colorade");
+      region.addClass("captured")
+      region.css("opacity", 0.5);
+      $(".colorade").css({
+        "top": region.position().top + region[0].getBoundingClientRect().height / 2 - colorade.height() / 2,
+        "left": region.position().left + region[0].getBoundingClientRect().width / 2 - colorade.width() / 2
+      });
+    };
     $scope.toIntro = function () {
       $state.go('intro');
     }
-  });
+  })
+;
