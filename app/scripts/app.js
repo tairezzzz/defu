@@ -99,21 +99,38 @@ angular.module('Defu', ['ionic', 'config', 'Defu.controllers'])
             regionsPath = d3.geo.path()
               .projection(projection);
 
+            var region_counter = 0;
             svg.selectAll('.region')
               .data(regions.features)
               .enter().append('path')
               .attr('class', 'region')
               .attr('d', regionsPath)
-              .attr('data-id', function (d) {
+              .attr('id', function (d) {
                 scope.$root.ukraine.push({
-                  "id": d.id,
-                  "name": d.properties.name
+                  "id": 'r' + region_counter,
+                  "name": d.properties.name,
+                  "invaderVisible": false
                 });
-                return d.id;
+                region_counter++;
+                return 'r' + region_counter;
               })
               .style('fill', function (d) {
                 return color(d.properties.percent)
               })
+
+            // move invaders to place
+            var invaderRect = document.getElementById('i1').getBoundingClientRect();
+            var invaderRectWidth = invaderRect.width;
+            var invaderRectHeight = invaderRect.height;
+
+            for (var j = 1; j < 28; ++j) {
+              var top = document.getElementById('r' + j).getBoundingClientRect().top;
+              var left = document.getElementById('r' + j).getBoundingClientRect().left;
+              var width = document.getElementById('r' + j).getBoundingClientRect().width;
+              var height = document.getElementById('r' + j).getBoundingClientRect().height;
+              d3.select('invader:nth-child(' + j + ')').style('top', (top + height / 2 - invaderRectHeight / 2) + 'px')
+              d3.select('invader:nth-child(' + j + ')').style('left', (left + width / 2 - invaderRectWidth / 2) + 'px')
+            }
 
             var rivers = topojson.feature(data, data.objects['rivers_lake_centerlines']);
 
@@ -189,6 +206,35 @@ angular.module('Defu', ['ionic', 'config', 'Defu.controllers'])
               .scale(width * mapScale)
               .translate([width / 2, (height - 70) / 2]);
           }
+        }
+      }
+    }])
+  .directive('invader', ['$window', '$timeout', '$ionicGesture',
+    function ($window, $timeout, $ionicGesture) {
+      return {
+        template: '<i class="icon ion-bug"></i>',
+        restrict: 'AE',
+        scope: {
+          data: '=',
+          label: '@',
+          onClick: '&'
+        },
+        link: function (scope, element, attr) {
+          scope.$watch(function () {
+            return element.hasClass('ng-hide')
+          }, function () {
+            if (!(element.hasClass('ng-hide'))) {
+              scope.timer = $timeout(function () {
+                scope.$root.ukraine[element.attr('id').split('i').pop()].invaderVisible = false;
+              }, 2000);
+            }
+          });
+          $ionicGesture.on('tap', function () {
+            scope.$root.ukraine[element.attr('id').split('i').pop()].invaderVisible = false;
+            scope.$root.score = scope.$root.score + 10;
+            scope.$root.showInvader;
+            $timeout.cancel(scope.timer);
+          }, element);
         }
       }
     }]);

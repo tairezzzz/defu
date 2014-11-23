@@ -1,6 +1,7 @@
 .slider {
   height: 100%;
 }
+
 .slider-slide {
   padding-top: 80px;
   color: #000;
@@ -20,9 +21,11 @@
   margin: 30px auto;
   font-size: 20px;
 }
+
 #list ol {
   margin-top: 30px;
 }
+
 #list ol li {
   text-align: left;
   list-style: decimal;
@@ -30,54 +33,73 @@
 }
 
 .country {
-    fill: #E7E7E7;
-    stroke: none;
+  fill: #E7E7E7;
+  stroke: none;
 }
 
 .country-boundary {
-    fill: none;
-    stroke: #999;
+  fill: none;
+  stroke: #999;
 }
 
 .region {
-    stroke: none;
+  stroke: none;
 }
 
 .region-boundary {
-    fill: none;
-    stroke: #424242;
-    stroke-dasharray: 2 2;
-    stroke-linejoin: round;
-    opacity: 0.5;
+  fill: none;
+  stroke: #424242;
+  stroke-dasharray: 2 2;
+  stroke-linejoin: round;
+  opacity: 0.5;
 }
 
 .ukraine-boundary {
-    fill: none;
-    stroke: #333;
+  fill: none;
+  stroke: #333;
 }
 
 .river {
-    fill: none;
-    stroke: #fff;
+  fill: none;
+  stroke: #fff;
 }
+
 .lake {
-    fill: #fff;
-    stroke: none;
+  fill: #fff;
+  stroke: none;
 }
 
 #map {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 }
 
-.score{
-    position: absolute;
-    top:1%;
-    right: 1%;
+.score {
+  position: absolute;
+  top: 1%;
+  right: 1%;
 }
-.colorade{
-    position: absolute;
-    top: 1%;
-    left: 1%;
-    font-size: 26px;
+
+invader {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  font-size: 8vh;
+  width: 10vh;
+  height:10vh;
+  text-align: center;
+  margin-top:1vh;
+}
+
+.invader-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.invader-show-hide.ng-hide {
+  opacity:0;
+}
+
+.invader-show-hide.ng-hide.hit {
+  transform: scale(3) rotate(10deg);
 }
