@@ -2,11 +2,16 @@
   "name": "Defu",
   "version": "0.0.0",
   "dependencies": {
-    "ionic": "v1.0.0-beta.13"
+    "ionic": "v1.0.0-beta.13",
+    "random": "~1.0.4",
+    "topojson": "~1.6.18",
+    "d3": "~3.4.13"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.17",
-    "angular-scenario": "~1.2.17"
+    "angular-scenario": "~1.2.17",
+    "d3": "~3.4.13",
+    "topojson": "~1.6.18",
+    "random": "~1.0.4"
   }
 }
-

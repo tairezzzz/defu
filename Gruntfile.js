@@ -20,7 +20,7 @@ module.exports = function (grunt) {
       dist: {
         options: {eol: 'lf', replace: true},
         files: [{
-          src: ['<%= yeoman.dist %>/*.html']
+          src: ['<%= yeoman.app %>/*.html']
         }]
       }
     },
@@ -330,6 +330,9 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/lib/ionic/release/js/ionic.js',
           '<%= yeoman.app %>/lib/ionic/release/js/ionic-angular.js',
           '<%= yeoman.app %>/lib/angular-mocks/angular-mocks.js',
+          '<%= yeoman.app %>/lib/d3/d3.min.js',
+          '<%= yeoman.app %>/lib/topojson/topojson.js',
+          '<%= yeoman.app %>/lib/lib/random/lib/random.min.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
           'test/mock/**/*.js',
           'test/spec/**/*.js'
